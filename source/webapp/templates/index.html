@@ -13,7 +13,7 @@
 <div class="container">
     <h1>To do List!</h1>
     {% for article in articles %}
-        <p>{{ article.pk }} | {{ article.name }}</p>
+        <a href="/view?id={{ article.pk }}"> {{ article.pk }} | {{ article.name }}</a> <br>
     {% endfor %}
     <a href="/articles/add/">Добавить Задачу</a>
 </div>
