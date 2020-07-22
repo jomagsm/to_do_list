@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new Task</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<form action="/articles/add/" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Введите название">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="form-description">Описание</label>
+        <textarea class="form-control" name="form-description" id="form-description" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="select_status">Выберите статус</label>
+        <select class="form-control" name="select_status" id="select_status">
+            {% for i in choice %}
+                <option>{{ i.1 }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+            <label for="finish_data">Дата выполнения</label>
+            <input type="text" class="form-control" name="finish_date" id="finish_data" placeholder="YYYY-mm-dd">
+    </div>
+    <input type="submit" value="Добавить Задачу">
+    <a class="btn btn-primary" role="button">Отмена</a>
+</form>
+
+</body>
+</html>

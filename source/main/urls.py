@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from webapp.views import index_view
+from webapp.views import index_view, add_new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_view),
+    path('articles/add/', add_new)
 ]
