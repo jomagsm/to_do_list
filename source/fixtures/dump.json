@@ -1,0 +1,60 @@
+[
+{
+  "model": "webapp.article",
+  "pk": 18,
+  "fields": {
+    "name": "Test name",
+    "description": "hgjghhjgjgh",
+    "status": "new",
+    "create_at": null
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 19,
+  "fields": {
+    "name": "wweew",
+    "description": "wfeewfefw",
+    "status": "in_progress",
+    "create_at": "1986-05-10"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 20,
+  "fields": {
+    "name": "Zhoma",
+    "description": "Jomsdflkjsdflkjfd,mfd,ds,mdfkljdggdfs",
+    "status": "done",
+    "create_at": "2012-08-13"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 21,
+  "fields": {
+    "name": "Zadacha",
+    "description": "Zadzcha zadazha zadazcha zadacha",
+    "status": "in_progress",
+    "create_at": "2020-07-23"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$150000$XOtUegCLGxWH$hLmVibUdjZUO2DOnl/fnzKNxNd6YObEqE1rUsoCYR58=",
+    "last_login": "2020-07-23T07:11:48Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-07-23T07:11:06Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
