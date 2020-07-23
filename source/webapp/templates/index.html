@@ -16,9 +16,9 @@
     <h1>To do List!</h1>
     {% for article in articles %}
         <a href="/view?id={{ article.pk }}"> {{ article.pk }} | {{ article.name }}</a>
-        <a class="btn btn-primary btn-sm mb-1" href="/delete?id={{ article.pk }}" role="button" >Удалить задачу</a><br>
+        <a class="btn btn-outline-dark btn-sm mb-1" href="/delete?id={{ article.pk }}" role="button" >Удалить задачу</a><br>
     {% endfor %}
-    <a href="/articles/add/">Добавить Задачу</a>
+    <a class="btn btn-outline-success btn-sm" href="/articles/add/">Добавить Задачу</a>
 </div>
 </body>
 </html>
