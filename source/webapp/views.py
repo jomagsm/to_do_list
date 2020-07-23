@@ -11,6 +11,7 @@ def index_view(request):
 
 
 def add_new(request):
+    data = Article.objects.all()
     choice = STATUS_CHOICE
     if request.method == 'POST':
         name = request.POST.get('name')
@@ -19,6 +20,8 @@ def add_new(request):
         create_at = request.POST.get('finish_data')
         Article.objects.create(name=name, description=description,
                                status=status, create_at=create_at)
+        return render(request, 'index.html', context={
+            'articles': data})
     return render(request, 'add_new.html', context={
         'choice': choice
     })
