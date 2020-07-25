@@ -1,7 +1,7 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}View{% endblock %}
-{#{% block link %}#}
-{#    <link rel="stylesheet" href="/css/style.css">{% endblock %}#}
+
 {% block menu %}
     <li class="nav-item active">
         <a class="nav-link" href="{% url 'article_new' %}">Добавить задачу <span class="sr-only">(current)</span></a>
@@ -12,7 +12,7 @@
 {% endblock %}
 {% block content %}
 <h1>{{ article.name }}</h1>
-    <p >Описание :<pre>{{ article.description }}</pre></p>
+    <p class="description">Описание :{{ article.description }}</p>
 <p>Статус: {{ article.status }}</p>
 <p> Дата выполнения {{ article.create_at }} </p>
 {% endblock %}
