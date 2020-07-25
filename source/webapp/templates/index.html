@@ -15,10 +15,10 @@
 <div class="container">
     <h1>To do List!</h1>
     {% for article in articles %}
-        <a href="/view/{{ article.pk }}"> {{ article.pk }} | {{ article.name }}</a>
+        <a href="{% url 'find' article.pk %}"> {{ article.pk }} | {{ article.name }}</a>
         <a class="btn btn-outline-dark btn-sm mb-1" href="/delete/{{ article.pk }}" role="button" >Удалить задачу</a><br>
     {% endfor %}
-    <a class="btn btn-outline-success btn-sm" href="/articles/add/">Добавить Задачу</a>
+    <a class="btn btn-outline-success btn-sm" href="{% url 'article_new' %}">Добавить Задачу</a>
 </div>
 </body>
 </html>

@@ -20,8 +20,8 @@ from webapp.views import index_view, add_new, find, delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index_view),
-    path('articles/add/', add_new),
-    path('view/<int:pk>', find),
-    path('delete/<int:pk>', delete)
+    path('', index_view, name='index'),
+    path('articles/add/', add_new, name='article_new'),
+    path('view/<int:pk>', find, name='find'),
+    path('delete/<int:pk>', delete, name='delete')
 ]

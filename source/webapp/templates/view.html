@@ -13,7 +13,7 @@
 <p>Описание :{{ article.description }}</p>
 <p>Статус: {{ article.status }}</p>
 <p> Дата выполнения {{ article.create_at }} </p>
-    <a class="btn btn-outline-success btn-sm" href="/">На главную</a>
+    <a class="btn btn-outline-success btn-sm" href="{% url 'index' %}">На главную</a>
 </div>
 </body>
 </html>

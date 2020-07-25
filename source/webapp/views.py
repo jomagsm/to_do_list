@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from webapp.models import Article, STATUS_CHOICE
 
 
@@ -19,7 +18,7 @@ def add_new(request):
         create_at = request.POST.get('finish_data')
         article = Article.objects.create(name=name, description=description,
                                status=status, create_at=create_at)
-        return HttpResponseRedirect(f'/view/{article.pk}')
+        return redirect('find', pk=article.pk)
     return render(request, 'add_new.html', context={
         'choice': choice
     })
@@ -27,7 +26,7 @@ def add_new(request):
 
 def find(request, pk):
     choice = STATUS_CHOICE
-    article = Article.objects.get(pk=pk)
+    article = get_object_or_404(Article, pk=pk)
     for i in choice:
         if article.status in i:
             article.status = i[1]
