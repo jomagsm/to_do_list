@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_view),
     path('articles/add/', add_new),
-    path('view/',find),
-    path('delete/',delete)
+    path('view/<int:pk>', find),
+    path('delete/<int:pk>', delete)
 ]
