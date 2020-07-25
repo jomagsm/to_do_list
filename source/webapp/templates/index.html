@@ -1,24 +1,16 @@
-{% load staticfiles %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-</head>
-<body>
-<div class="container">
+{% extends 'base.html' %}
+
+{% block menu %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'article_new' %}">Добавить Задачу <span class="sr-only">(current)</span></a>
+      </li>
+
+{% endblock %}
+
+{% block content %}
     <h1>To do List!</h1>
     {% for article in articles %}
-        <a href="{% url 'find' article.pk %}"> {{ article.pk }} | {{ article.name }}</a>
-        <a class="btn btn-outline-dark btn-sm mb-1" href="/delete/{{ article.pk }}" role="button" >Удалить задачу</a><br>
+        <a class=" btn btn-outline-dark btn-sm mb-1 mr-2" href=" {%  url 'delete' article.pk %}" role="button" >Удалить</a>
+        <a href="{% url 'find' article.pk %}"> {{ article.pk }} | {{ article.name }}</a><br>
     {% endfor %}
-    <a class="btn btn-outline-success btn-sm" href="{% url 'article_new' %}">Добавить Задачу</a>
-</div>
-</body>
-</html>
+{% endblock %}
