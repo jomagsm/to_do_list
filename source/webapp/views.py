@@ -17,26 +17,16 @@ def add_new(request):
     if request.method == 'POST':
         errors = {}
         form = ArticleForm(data=request.POST)
-        print(form)
         if form.is_valid():
             article = Article.objects.create(
                 name=form.cleaned_data['name'],
-                description=form.cleaned_data['form-description'],
-                status=form.cleaned_data['select_status'],
-                create_at=form.cleaned_data['finish_data'])
-            # if article.create_at == '':
-            #     article.create_at = None
-            # if not article.name:
-            #     errors['name'] = 'Name should not be empty'
-            # if not article.description:
-            #     errors['description'] = 'Description should not be empty'
-            # if not article.status:
-            #     errors['status'] = 'Status should not be empty'
-            print(article)
+                description=form.cleaned_data['description'],
+                status=form.cleaned_data['status'],
+                create_at=form.cleaned_data['create_at'])
             return redirect('find', pk=article.pk)
         else:
             return render(request, 'add_new.html', context={
-                'errors': errors
+                'form': form
             })
     return render(request, 'add_new.html', context={
         'choice': choice
@@ -83,27 +73,27 @@ def edit(request, pk):
             'choice':choice
         })
     elif request.method == 'POST':
-        form = ArticleForm(initial={
-                "name": article.name,
-                "description": article.description,
-                "status": article.status,
-                "create_at": article.create_at})
+        form = ArticleForm(data=request.POST)
         if form.is_valid():
-            print('Заработал')
-            article.name = form.cleaned_data('name')
-            article.description = form.cleaned_data('form-description')
-            article.status = form.cleaned_data('select_status')
-            create_at = form.cleaned_data('finish_data')
+            article.name = form.cleaned_data['name']
+            article.description = form.cleaned_data['description']
+            article.status = form.cleaned_data['status']
+            create_at = form.cleaned_data['create_at']
             if create_at == '':
                 create_at = None
             article.create_at = create_at
             article.save()
             return redirect('find', pk=article.pk)
         else:
-            for field in form: print(field.name, field.errors)
+            if article.create_at is None:
+                create_at = ''
+            else:
+                create_at = article.create_at.strftime("%Y-%m-%d")
             return render(request,'edit.html',context={
                 'article': article,
-                'form': form
+                'form': form,
+                'create_at':create_at,
+                'choice': choice
             })
     else:
          return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
