@@ -16,6 +16,6 @@
 {% block content %}
 <h1>{{ article.name }}</h1>
     <p class="description">Описание :{{ article.description }}</p>
-<p>Статус: {{ article.status }}</p>
+<p>Статус: {{ article.get_status_display }}</p>
 <p> Дата выполнения {{ article.create_at }} </p>
 {% endblock %}

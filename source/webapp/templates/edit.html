@@ -9,24 +9,39 @@
         <div class="form-group">
             <label for="name">Название</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Введите название" value="{{ article.name }}">
+            {% for error in form.name.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
         </div>
     </div>
     <div class="form-group">
-        <label for="form-description">Описание</label>
-        <textarea class="form-control" name="form-description" id="form-description" rows="3">{{ article.description }}</textarea>
+        <label for="description">Описание</label>
+        <textarea class="form-control" name="description" id="form-description" rows="3">{{ article.description }}</textarea>
+        {% for error in form.description.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
     </div>
     <div class="form-group">
         <label for="select_status">Выберите статус</label>
-        <select class="form-control" name="select_status" id="select_status">
-            <option selected value="{{ status.0 }}">{{ status.1 }}</option>
-            {% for i in choice %}#}
-            <option value="{{ i.0 }}">{{ i.1 }}</option>
+        <select class="form-control" name="status" id="select_status">
+            {% for value, label in choice %}
+                <option value="{{ value }}"
+                    {% if value == article.status %}selected{% endif %}>
+                {{ label }}</option>
         {% endfor %}
         </select>
+    {% for error in form.description.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
     </div>
     <div class="form-group">
             <label for="finish_data">Дата выполнения</label>
-            <input type="text" class="form-control" name="finish_data" id="finish_data" value="{{ create_at }}" placeholder="YYYY-mm-dd">
+            <input type="text" class="form-control" name="create_at" id="finish_data" value="{{ create_at }}" placeholder="YYYY-mm-dd">
+               {% for error in form.create_at.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
     </div>
     <input type="submit" value="Сохранить изменение">
+</form>
+</div>
 {% endblock %}
