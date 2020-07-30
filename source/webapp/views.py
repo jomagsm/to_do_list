@@ -1,4 +1,4 @@
-from django.http import HttpResponseNotAllowed
+from django.http import HttpResponseNotAllowed, QueryDict
 from django.shortcuts import render, get_object_or_404, redirect
 
 from webapp.forms import ArticleForm
@@ -15,7 +15,6 @@ def index_view(request):
 def add_new(request):
     choice = STATUS_CHOICE
     if request.method == 'POST':
-        errors = {}
         form = ArticleForm(data=request.POST)
         if form.is_valid():
             article = Article.objects.create(
@@ -26,10 +25,12 @@ def add_new(request):
             return redirect('find', pk=article.pk)
         else:
             return render(request, 'add_new.html', context={
-                'form': form
+                'form': form,
+                'choice':choice
             })
     return render(request, 'add_new.html', context={
-        'choice': choice
+        'choice': choice,
+        'form': ArticleForm()
     })
 
 
@@ -97,3 +98,9 @@ def edit(request, pk):
             })
     else:
          return HttpResponseNotAllowed(permitted_methods=['GET', 'POST'])
+
+
+def multi_delete(request):
+    data= request.POST.getlist('id')
+    Article.objects.filter(pk__in=data).delete()
+    return redirect('index')

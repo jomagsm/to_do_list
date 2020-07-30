@@ -5,42 +5,13 @@
 <div class="col-6">
 <form action="{% url 'edit' article.pk %}" method="POST">
     {% csrf_token %}
-    <div class="form-group">
-        <div class="form-group">
-            <label for="name">Название</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Введите название" value="{{ article.name }}">
-            {% for error in form.name.errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="description">Описание</label>
-        <textarea class="form-control" name="description" id="form-description" rows="3">{{ article.description }}</textarea>
-        {% for error in form.description.errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-    </div>
-    <div class="form-group">
-        <label for="select_status">Выберите статус</label>
-        <select class="form-control" name="status" id="select_status">
-            {% for value, label in choice %}
-                <option value="{{ value }}"
-                    {% if value == article.status %}selected{% endif %}>
-                {{ label }}</option>
-        {% endfor %}
-        </select>
-    {% for error in form.description.errors %}
-            <p>{{ error }}</p>
-            {% endfor %}
-    </div>
-    <div class="form-group">
-            <label for="finish_data">Дата выполнения</label>
-            <input type="text" class="form-control" name="create_at" id="finish_data" value="{{ create_at }}" placeholder="YYYY-mm-dd">
-               {% for error in form.create_at.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-    </div>
+    {% for field in form %}
+    {% include 'partial/article_form.html' with form=field %}
+    {% endfor %}
+{#    {% include 'partial/article_form.html' with form=form.name %}#}
+{#    {% include 'partial/article_form.html' with form=form.description %}#}
+{#    {% include 'partial/article_form.html' with form=form.status %}#}
+{#    {% include 'partial/article_form.html' with form=form.create_at %}#}
     <input type="submit" value="Сохранить изменение">
 </form>
 </div>

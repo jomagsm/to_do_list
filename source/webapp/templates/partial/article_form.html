@@ -1,38 +1,13 @@
- {% csrf_token %}
-    <div class="form-group">
+<div class="form-group">
         <div class="form-group">
-            <label for="name">Название</label>
-            {% if errors.name %}
-            <input type="text" name="name" class="form-control" id="name" placeholder="Введите название"
-                   value="{{ article.name }}">
-                <p class="form-error">{{ errors.name }}</p>
-            {% else %}
-                <input type="text" name="name" class="form-control" id="name" placeholder="Введите название"
-                   value="{{ article.name }}">
-            {% endif %}
+            <label for="name">{{ form.label}}</label>
+{#                <input type="text" name="{{ form.name.name }}" class="form-control" id="name" placeholder="Введите название"#}
+{#                   value="{{ form.name.value }}">#}
+            <p>{{ form }}</p>
+            {% for error in form.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+
+
         </div>
-    </div>
-    <div class="form-group">
-        <label for="form-description">Описание</label>
-        {% if errors.description %}
-            <textarea class="form-control" name="form-description" id="form-description" rows="3">
-                {{ article.description }}</textarea>
-            <p class="form-error">{{ errors.decription }}</p>
-            {% else %}
-        <textarea class="form-control" name="form-description" id="form-description" rows="3">
-            {{ article.description }}</textarea>
-        {% endif %}
-    </div>
-    <div class="form-group">
-        <label for="select_status">Выберите статус</label>
-        <select class="form-control" name="select_status" id="select_status">
-            {% for i in choice %}#}
-            <option value="{{ i.0 }}">{{ i.1 }}</option>
-        {% endfor %}
-        </select>
-    </div>
-    <div class="form-group">
-            <label for="finish_data">Дата выполнения</label>
-        <input type="text" class="form-control" name="finish_data" id="finish_data" placeholder="YYYY-mm-dd"
-               value="{{ create_at }}">
     </div>

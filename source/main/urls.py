@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from webapp.views import index_view, add_new, find, delete, edit
+from webapp.views import index_view, add_new, find, delete, edit, multi_delete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,6 @@ urlpatterns = [
     path('articles/add/', add_new, name='article_new'),
     path('view/<int:pk>/', find, name='find'),
     path('delete/<int:pk>/', delete, name='delete'),
-    path('edit/<int:pk>/', edit, name='edit')
+    path('edit/<int:pk>/', edit, name='edit'),
+    path('multi_delete/',multi_delete, name='multi_delete')
 ]

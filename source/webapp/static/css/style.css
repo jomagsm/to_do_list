@@ -1,3 +1,6 @@
 .description{
     white-space: pre
 }
+.error {
+    color: red;
+}

@@ -9,7 +9,10 @@
 
 {% block content %}
     <h1>To do List!</h1>
-    {% for article in articles %}
+    <form action="{% url 'multi_delete'%}" method="POST">
+    {% csrf_token %}
+        {% for article in articles %}
+        <input class="ml-4" type="checkbox" name="id" value="{{ article.pk }}">
         <a class=" btn btn-outline-dark btn-sm mb-1 mr-2" href=" {% url 'delete' article.pk %}" role="button">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
                  xmlns="http://www.w3.org/2000/svg">
@@ -29,4 +32,6 @@
         </a>
         <a href="{% url 'find' article.pk %}"> {{ article.pk }} | {{ article.name }}</a><br>
     {% endfor %}
+    <input type="submit" value="Удалить">
+    </form>
 {% endblock %}
