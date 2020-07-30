@@ -32,6 +32,6 @@
         </a>
         <a href="{% url 'find' article.pk %}"> {{ article.pk }} | {{ article.name }}</a><br>
     {% endfor %}
-    <input type="submit" value="Удалить">
+    <input class=" btn btn-outline-dark btn-sm mb-1 mr-2" type="submit" value="Удалить">
     </form>
 {% endblock %}
